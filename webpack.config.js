@@ -7,7 +7,19 @@ module.exports = {
   target: "web",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js",
+    filename: "[name][contenthash].js",
+    clean: true,
+    assetModuleFilename: "[name][ext]",
+  },
+  devServer: {
+    static: {
+      directory: path.resolve(__dirname, "dist"),
+    },
+    port: 3000,
+    open: true,
+    hot: true,
+    compress: true,
+    historyApiFallback: true,
   },
   resolve: {
     extensions: [".js", ".ts", ".jsx", ".tsx"],
@@ -41,7 +53,7 @@ module.exports = {
       {
         test: /\.css/,
         exclude: /node_modules/,
-        use: ["style-loader", "css-loader"],
+        use: ["style-loader", "css-loader", "postcss-loader"],
       },
       {
         test: /\.(png|svg|ttf)/,

@@ -3,7 +3,8 @@
     src: url('assets/fonts/Anta-Regular.ttf') format('truetype');
 }
 
-div {
+h1,
+h2 {
     color: blue;
     font-family: 'Anta-Regular';
 }

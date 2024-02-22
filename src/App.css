@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Anta-Regular';
+    src: url('assets/fonts/Anta-Regular.ttf') format('truetype');
+}
+
+div {
+    color: blue;
+    font-family: 'Anta-Regular';
+}

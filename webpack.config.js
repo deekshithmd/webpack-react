@@ -26,7 +26,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.html",
+      template: "./public/index.html",
     }),
   ],
   module: {
@@ -56,7 +56,7 @@ module.exports = {
         use: ["style-loader", "css-loader", "postcss-loader"],
       },
       {
-        test: /\.(png|svg|ttf)/,
+        test: /\.(png|svg|jpg|jpeg|gif|woff|woff2|eot|ttf|otf)/,
         type: "asset/resource",
       },
     ],

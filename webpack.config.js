@@ -2,9 +2,10 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: ["./src/index.tsx"],
+  entry: path.resolve(__dirname, "src", "index.tsx"),
   mode: "development",
   target: "web",
+  devtool: "source-map",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name][contenthash].js",
@@ -60,5 +61,17 @@ module.exports = {
         type: "asset/resource",
       },
     ],
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        node_vendors: {
+          name: "vendor",
+          test: /[\\/]node_modules[\\/]/,
+          chunks: "all",
+          priority: 1,
+        },
+      },
+    },
   },
 };

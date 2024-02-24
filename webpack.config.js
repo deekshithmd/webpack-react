@@ -8,14 +8,14 @@ module.exports = {
   target: "web",
   devtool: "source-map",
   output: {
-    path: path.resolve(__dirname, "build"),
+    path: path.resolve(__dirname, "dist"),
     filename: "[name][contenthash].js",
     clean: true,
     assetModuleFilename: "[name][ext]",
   },
   devServer: {
     static: {
-      directory: path.resolve(__dirname, "build"),
+      directory: path.resolve(__dirname, "dist"),
     },
     port: 3000,
     open: true,
@@ -79,7 +79,7 @@ module.exports = {
         onStart: {
           delete: [
             {
-              source: path.join(__dirname, "build/").replaceAll("\\", "/"),
+              source: path.join(__dirname, "dist/").replaceAll("\\", "/"),
               options: {
                 force: true,
                 recursive: true,

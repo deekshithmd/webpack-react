@@ -1,14 +1,34 @@
 import React from "react";
-import "./App.css";
-import Typography from "./components/Typography";
-import Im from "./assets/images/freshui.png";
+import HomePage from "./pages/HomePage";
+import LandingPage from "./pages/LandingPage";
+import AuthPage from "./pages/AuthPage";
+import DashboardPage from "./pages/DashboardPage";
+
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <LandingPage />,
+  },
+  {
+    path: "auth",
+    element: <AuthPage />,
+  },
+  {
+    path: "home",
+    element: <HomePage />,
+  },
+  {
+    path: "dashboard",
+    element: <DashboardPage />,
+  },
+]);
 
 export default function App() {
   return (
     <div>
-      <p className="text-red-500 text-2xl">Testing tailwind</p>
-      <Typography variant="h2">Hello React</Typography>
-      <img src={Im} />
+      <RouterProvider router={router} />
     </div>
   );
 }

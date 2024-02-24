@@ -1,6 +1,5 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const FileManagerPlugin = require("filemanager-webpack-plugin");
 
 module.exports = {
   entry: path.resolve(__dirname, "src", "index.tsx"),
@@ -17,11 +16,16 @@ module.exports = {
     static: {
       directory: path.resolve(__dirname, "dist"),
     },
+    client: {
+      progress: true,
+      reconnect: true,
+    },
     port: 3000,
     open: true,
     hot: true,
     compress: true,
     historyApiFallback: true,
+    allowedHosts: "all",
   },
   resolve: {
     extensions: [".js", ".ts", ".jsx", ".tsx"],
@@ -58,36 +62,9 @@ module.exports = {
       },
     ],
   },
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        node_vendors: {
-          name: "vendor",
-          test: /[\\/]node_modules[\\/]/,
-          chunks: "all",
-          priority: 1,
-        },
-      },
-    },
-  },
   plugins: [
     new HtmlWebpackPlugin({
       template: "./public/index.html",
-    }),
-    new FileManagerPlugin({
-      events: {
-        onStart: {
-          delete: [
-            {
-              source: path.join(__dirname, "dist/").replaceAll("\\", "/"),
-              options: {
-                force: true,
-                recursive: true,
-              },
-            },
-          ],
-        },
-      },
     }),
   ],
 };
